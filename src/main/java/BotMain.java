@@ -13,6 +13,9 @@ class BotMain {
 
     public static void main(String[] args) {
         System.out.println("Starting bot");
+
+        initEventBus();
+
         threadPool = new ArrayList<Thread>();
         ServerSocket serverSock = null;
         try {
@@ -46,7 +49,7 @@ class BotMain {
         }
     }
 
-    void initEventBus() {
+    static void initEventBus() {
         EventBus.getEv().subscribe(new EchoTask());
     }
 
