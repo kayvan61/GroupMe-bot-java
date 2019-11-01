@@ -1,3 +1,5 @@
+import javax.xml.ws.http.HTTPException;
+
 import org.apache.http.Header;
 import org.apache.http.HttpResponse;
 import org.apache.http.HttpVersion;
@@ -27,9 +29,13 @@ public class EchoTask extends BotRunable {
 
         HttpResponse response = new BasicHttpResponse(HttpVersion.HTTP_1_1, 200, "OK");
         response.setEntity(new StringEntity(responseBody.toString(), ContentType.create("application/json")));
-        conn.sendResponseHeader(response);
-        conn.sendResponseEntity(response);
-        conn.flush();
+        try {
+            conn.sendResponseHeader(response);
+            conn.sendResponseEntity(response);
+            conn.flush();
+        } catch (HTTPException e) {
+            e.printStackTrace();
+        }
 
     }
 
