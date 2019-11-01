@@ -1,6 +1,9 @@
+import java.io.IOException;
+
 import javax.xml.ws.http.HTTPException;
 
 import org.apache.http.Header;
+import org.apache.http.HttpException;
 import org.apache.http.HttpResponse;
 import org.apache.http.HttpVersion;
 import org.apache.http.entity.ContentType;
@@ -33,7 +36,7 @@ public class EchoTask extends BotRunable {
             conn.sendResponseHeader(response);
             conn.sendResponseEntity(response);
             conn.flush();
-        } catch (HTTPException e) {
+        } catch (HttpException | IOException e) {
             e.printStackTrace();
         }
 
