@@ -1,6 +1,3 @@
-import java.io.PrintWriter;
-import java.net.Socket;
-
 import org.apache.http.impl.DefaultBHttpServerConnection;
 
 import lombok.Getter;
@@ -13,8 +10,12 @@ public class BotEvent {
     @Getter
     String rawinput;
 
-    public BotEvent(DefaultBHttpServerConnection cs, String rs) {
+    @Getter
+    String botAPIKey;
+
+    public BotEvent(DefaultBHttpServerConnection cs, String rs, String bk) {
         currentConnection = cs;
         rawinput = rs;
+        botAPIKey = bk;
     }
 }

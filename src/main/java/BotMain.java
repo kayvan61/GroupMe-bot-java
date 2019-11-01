@@ -1,7 +1,14 @@
+import java.io.BufferedReader;
+import java.io.File;
+import java.io.FileNotFoundException;
+import java.io.FileReader;
 import java.io.IOException;
 import java.net.ServerSocket;
 import java.net.Socket;
 import java.util.ArrayList;
+
+import org.json.JSONObject;
+import org.json.JSONTokener;
 
 class BotMain {
 
@@ -11,10 +18,13 @@ class BotMain {
 
     private static boolean running = true;
 
+    private static JSONObject configJson;
+
     public static void main(String[] args) {
         System.out.println("Starting bot");
 
         initEventBus();
+        initConfig();
 
         threadPool = new ArrayList<Thread>();
         ServerSocket serverSock = null;
@@ -50,7 +60,35 @@ class BotMain {
     }
 
     static void initEventBus() {
-        EventBus.getEv().subscribe(new EchoTask());
+        EventBus.ev.subscribe(new EchoTask());
     }
 
+    static void initConfig() {
+        try {
+            JSONTokener tok = new JSONTokener(new BufferedReader(new FileReader("./config.json")));
+            configJson = new JSONObject(tok);
+
+        } catch (FileNotFoundException e) {
+            File config = new File("config.json");
+            try {
+                config.createNewFile();
+            } catch (IOException er) {
+                System.out.println("Please open an issue on git and add this stack trace: ");
+                e.printStackTrace();
+                System.exit(-1);
+            }
+            System.out.println("config file not found!");
+            System.out.print("created config file at: ");
+            System.out.println(config.getAbsolutePath());
+        }
+    }
+
+    static String getAPIKey() {
+        String key = configJson.getString("api_key");
+        if (key.equals("YOUR_API_KEY")) {
+            System.out.println("Please set your API key in the config.json file.");
+            System.exit(-1);
+        }
+        return key;
+    }
 }
