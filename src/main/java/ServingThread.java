@@ -10,10 +10,8 @@ import org.apache.http.message.BasicHttpResponse;
 import org.apache.http.util.EntityUtils;
 import org.json.JSONObject;
 
-import java.io.BufferedReader;
 import java.io.ByteArrayOutputStream;
 import java.io.IOException;
-import java.io.InputStreamReader;
 import java.net.Socket;
 import java.util.HashMap;
 
@@ -61,8 +59,6 @@ public class ServingThread implements Runnable {
             conn.flush();
 
             JSONObject jobj = new JSONObject(jsonString);
-            System.out.println(jobj.getString("text"));
-
             // Put this string on the Event bus
             // Let people sub to the Event bus and dispatch from there
             if (!jobj.getString("user_id").equals(BotMain.getBotUserID())) {
