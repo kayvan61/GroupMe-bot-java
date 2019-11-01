@@ -6,9 +6,12 @@ import org.apache.http.Header;
 import org.apache.http.HttpException;
 import org.apache.http.HttpResponse;
 import org.apache.http.HttpVersion;
+import org.apache.http.client.HttpClient;
+import org.apache.http.client.methods.HttpPost;
 import org.apache.http.entity.ContentType;
 import org.apache.http.entity.StringEntity;
 import org.apache.http.impl.DefaultBHttpServerConnection;
+import org.apache.http.impl.client.HttpClients;
 import org.apache.http.message.BasicHttpResponse;
 import org.json.JSONObject;
 
@@ -24,22 +27,19 @@ public class EchoTask extends BotRunable {
     void doWork() {
         // TODO Auto-generated method stub
         // access super.be;
-        DefaultBHttpServerConnection conn = super.be.getCurrentConnection();
-
         JSONObject responseBody = new JSONObject();
         responseBody.put("bot_id", BotMain.getBotID());
         responseBody.put("text", super.be.getRawinput());
 
-        HttpResponse response = new BasicHttpResponse(HttpVersion.HTTP_1_1, 200, "OK");
-        response.setEntity(new StringEntity(responseBody.toString(), ContentType.create("application/json")));
+        HttpClient c = HttpClients.createDefault();
+        HttpPost p = new HttpPost(BotMain.getAPIURL());
+
+        p.setEntity(new StringEntity(responseBody.toString(), ContentType.create("application/json")));
         try {
-            conn.sendResponseHeader(response);
-            conn.sendResponseEntity(response);
-            conn.flush();
-        } catch (HttpException | IOException e) {
+            HttpResponse r = c.execute(p);
+        } catch (IOException e) {
             e.printStackTrace();
         }
-
     }
 
     @Override

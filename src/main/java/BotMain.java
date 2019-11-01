@@ -91,4 +91,8 @@ class BotMain {
         }
         return key;
     }
+
+    static String getAPIURL() {
+        return "https://api.groupme.com/v3/bots/post";
+    }
 }
