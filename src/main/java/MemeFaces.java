@@ -1,6 +1,6 @@
 import org.json.JSONObject;
 
-public class EchoTask extends BotRunable {
+public class MemeFaces extends BotRunable {
 
     @Override
     void setEvent(BotEvent b) {
@@ -12,9 +12,13 @@ public class EchoTask extends BotRunable {
     void doWork() {
         // TODO Auto-generated method stub
         // access super.be;
+        if (super.be.getArguments().get(0).equals("/face")) {
+
+        }
+
         JSONObject responseBody = new JSONObject();
         responseBody.put("bot_id", BotMain.getBotID());
-        responseBody.put("text", super.be.getRawinput());
+        responseBody.put("text", CoolFaces.getRandomFace());
 
         super.replyToServer(responseBody.toString());
     }

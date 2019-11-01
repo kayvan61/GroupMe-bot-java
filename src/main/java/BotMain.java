@@ -61,6 +61,7 @@ class BotMain {
 
     static void initEventBus() {
         EventBus.ev.subscribe(new EchoTask());
+        EventBus.ev.subscribe(new MemeFaces());
     }
 
     static void initConfig() {
