@@ -23,6 +23,10 @@ public class BotEvent {
         currentConnection = cs;
         rawinput = rs;
         botAPIKey = bk;
-        arguments = new ArrayList<String>(Arrays.asList(rs.split(" ")));
+        String trimmedString = rs.replaceAll("^\\s+|\\s+$", "");
+        arguments = new ArrayList<String>(Arrays.asList(trimmedString.split(" ")));
+        if (arguments.size() <= 0) {
+            arguments.add(trimmedString);
+        }
     }
 }
