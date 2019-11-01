@@ -95,4 +95,8 @@ class BotMain {
     static String getAPIURL() {
         return "https://api.groupme.com/v3/bots/post";
     }
+
+    static String getBotUserID() {
+        return configJson.getString("user_id");
+    }
 }

@@ -65,8 +65,10 @@ public class ServingThread implements Runnable {
 
             // Put this string on the Event bus
             // Let people sub to the Event bus and dispatch from there
-            BotEvent event = new BotEvent(conn, jobj.getString("text"), BotMain.getBotID());
-            EventBus.ev.dispatch(event);
+            if (!jobj.getString("user_id").equals(BotMain.getBotUserID())) {
+                BotEvent event = new BotEvent(conn, jobj.getString("text"), BotMain.getBotID());
+                EventBus.ev.dispatch(event);
+            }
 
             System.out.println("finished serving a request");
             conn.close();
