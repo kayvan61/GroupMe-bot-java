@@ -61,7 +61,9 @@ public class ServingThread implements Runnable {
             conn.flush();
 
             JSONObject jobj = new JSONObject(jsonString);
-            System.out.println(jobj.getString("string"));
+	    System.out.println(jobj.getString("text"));
+	    // Put this string on the Event bus
+	    // Let people sub to the Event bus and dispatch from there
             System.out.println("finished serving a request");
             conn.close();
             servingSocket.close();
