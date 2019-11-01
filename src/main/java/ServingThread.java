@@ -59,6 +59,7 @@ public class ServingThread implements Runnable {
             conn.flush();
 
             JSONObject jobj = new JSONObject(jsonString);
+
             // Put this string on the Event bus
             // Let people sub to the Event bus and dispatch from there
             if (!jobj.getString("user_id").equals(BotMain.getBotUserID())) {

@@ -19,7 +19,11 @@ public class MemeFaces extends BotRunable {
             responseBody.put("text", CoolFaces.getRandomFace());
 
             super.replyToServer(responseBody.toString());
-        }
+        } else {
+	    for(String s: super.be.getArguments()){
+		System.out.println(s);
+	    }
+	}
     }
 
     @Override
