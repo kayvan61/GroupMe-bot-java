@@ -83,10 +83,10 @@ class BotMain {
         }
     }
 
-    static String getAPIKey() {
-        String key = configJson.getString("api_key");
-        if (key.equals("YOUR_API_KEY")) {
-            System.out.println("Please set your API key in the config.json file.");
+    static String getBotID() {
+        String key = configJson.getString("bot_id");
+        if (key.equals("DEFAULT")) {
+            System.out.println("Please set the bot id key in the config.json file.");
             System.exit(-1);
         }
         return key;

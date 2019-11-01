@@ -1,4 +1,7 @@
+import org.apache.http.Header;
 import org.apache.http.HttpResponse;
+import org.apache.http.HttpVersion;
+import org.apache.http.entity.ContentType;
 import org.apache.http.entity.StringEntity;
 import org.apache.http.impl.DefaultBHttpServerConnection;
 import org.apache.http.message.BasicHttpResponse;
@@ -19,10 +22,11 @@ public class EchoTask extends BotRunable {
         DefaultBHttpServerConnection conn = super.be.getCurrentConnection();
 
         JSONObject responseBody = new JSONObject();
-        responseBody.put(key, value)
+        responseBody.put("bot_id", BotMain.getBotID());
+        responseBody.put("text", super.be.getRawinput());
 
         HttpResponse response = new BasicHttpResponse(HttpVersion.HTTP_1_1, 200, "OK");
-        response.setEntity(new StringEntity("Got it"));
+        response.setEntity(new StringEntity(responseBody.toString(), ContentType.create("application/json")));
         conn.sendResponseHeader(response);
         conn.sendResponseEntity(response);
         conn.flush();
