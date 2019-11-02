@@ -12,11 +12,13 @@ public class VersionEvent extends BotRunable {
     void doWork() {
         // TODO Auto-generated method stub
         // access super.be;
-        JSONObject responseBody = new JSONObject();
-        responseBody.put("bot_id", BotMain.getBotID());
-        responseBody.put("text", BotMain.getVersionString());
+        if (super.be.getArguments().get(0).equals("/version")) {
+            JSONObject responseBody = new JSONObject();
+            responseBody.put("bot_id", BotMain.getBotID());
+            responseBody.put("text", BotMain.getVersionString());
 
-        super.replyToServer(responseBody.toString());
+            super.replyToServer(responseBody.toString());
+        }
     }
 
     @Override
