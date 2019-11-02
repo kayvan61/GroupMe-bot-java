@@ -62,6 +62,7 @@ class BotMain {
     static void initEventBus() {
         EventBus.ev.subscribe(new EchoTask());
         EventBus.ev.subscribe(new MemeFaces());
+        EventBus.ev.subscribe(new VersionEvent());
     }
 
     static void initConfig() {
@@ -99,5 +100,10 @@ class BotMain {
 
     static String getBotUserID() {
         return configJson.getString("user_id");
+    }
+
+    static String getVersionString() {
+        return "Version: 1.0.0 java\n" + "Author: Ali Macaroni\n" + "Lang: Java\n"
+                + "If this goes down im killing myself";
     }
 }
