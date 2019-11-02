@@ -12,11 +12,13 @@ public class EchoTask extends BotRunable {
     void doWork() {
         // TODO Auto-generated method stub
         // access super.be;
-        JSONObject responseBody = new JSONObject();
-        responseBody.put("bot_id", BotMain.getBotID());
-        responseBody.put("text", super.be.getRawinput());
+        if (super.be.getArguments().get(0).equals("/echo")) {
+            JSONObject responseBody = new JSONObject();
+            responseBody.put("bot_id", BotMain.getBotID());
+            responseBody.put("text", super.be.getRawinput());
 
-        super.replyToServer(responseBody.toString());
+            super.replyToServer(responseBody.toString());
+        }
     }
 
     @Override
