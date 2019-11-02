@@ -102,6 +102,10 @@ class BotMain {
         return configJson.getString("user_id");
     }
 
+    static String getAPIToken() {
+        return configJson.getString("api_key");
+    }
+
     static String getVersionString() {
         return "Version: 1.0.0 java\n" + "Author: Ali Macaroni\n" + "Lang: Java\n"
                 + "If this goes down im killing myself";
