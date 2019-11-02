@@ -17,8 +17,9 @@ abstract class BotRunable implements Runnable {
     HttpResponse replyToServer(String rep) {
         HttpClient c = HttpClients.createDefault();
         HttpPost p = new HttpPost(BotMain.getAPIURL());
+        p.setHeader("Content-Type", "application/json; charset=UTF-8");
 
-        p.setEntity(new StringEntity(rep, ContentType.create("application/json; charset=UTF-8")));
+        p.setEntity(new StringEntity(rep, "UTF-8"));
         try {
             return c.execute(p);
         } catch (IOException e) {
