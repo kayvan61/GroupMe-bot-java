@@ -70,7 +70,5 @@ abstract class BotRunable implements Runnable {
             e.printStackTrace();
             return "";
         }
-
-        return "";
     }
 }
