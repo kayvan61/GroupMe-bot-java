@@ -39,8 +39,8 @@ abstract class BotRunable implements Runnable {
         File pic = new File(path);
 
         HttpClient c = HttpClients.createDefault();
-        HttpPost p = new HttpPost(BotMain.getAPIURL());
-        p.setHeader("Content-Type", "application/json; charset=UTF-8");
+        HttpPost p = new HttpPost("https://image.groupme.com/pictures");
+        p.setHeader("Content-Type", "image/jpeg");
         p.setHeader("X-Access-Token", BotMain.getAPIToken());
 
         p.setEntity(new FileEntity(pic));

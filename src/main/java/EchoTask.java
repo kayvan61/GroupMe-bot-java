@@ -17,7 +17,7 @@ public class EchoTask extends BotRunable {
             responseBody.put("bot_id", BotMain.getBotID());
             responseBody.put("text", super.be.getRawinput());
 
-            super.getGroupMeImageURL("~/image.jpg");
+            super.getGroupMeImageURL("/home/kayvan/image.jpg");
 
             super.replyToServer(responseBody.toString());
         }
