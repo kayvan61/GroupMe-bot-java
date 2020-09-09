@@ -1,4 +1,4 @@
-#This is a bot that intereacts with the GroupMe groupchat application.
+# This is a bot that intereacts with the GroupMe groupchat application.
 
 This props up a listen server which can be configured through the GroupMe API. 
 
